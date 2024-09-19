@@ -15,6 +15,8 @@
 // Historial de revisiones
 //          18/09/2024 - Creación (primera versión) del código
 
+#ifndef FUNCTIONS_H_
+#define FUNCTIONS_H_
 
 #include <iostream>
 
@@ -26,3 +28,5 @@ const std::string kHelpText = "./p02_strings -- Símbolos, Alfabetos y Cadenas \
 
 void Usage(int argc, char *argv[]);
 void Options(const std::string input_file, const std::string output_file, const int opcode);
+
+#endif

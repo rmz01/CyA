@@ -17,8 +17,6 @@
 // Bugs:
 //          - Repite una vez la última línea del fichero de lectura.
  
-
-
 #include <iostream>
 #include <fstream>
 #include <string>
