@@ -3,19 +3,19 @@
 // Grado en Ingeniería Informática
 // Asignatura: Computabilidad y Algoritmia
 // Curso: 2º
-// Práctica 1: Símbolos, alfabetos y cadenas
+// Práctica 2: Símbolos, alfabetos y cadenas
 // Autor: Aarón Ramírez Valencia
 // Correo: alu0101438238@ull.edu.es
-// Fecha: 01/10/2022
+// Fecha: 18/09/2024
 // Archivo functions.cc: 
 //          Contiene las definiciones de la función de lectura/escritura de 
 //          ficheros y la función para el --help por línea de comandos.
 // Referencias:
 //          Enlaces de interés
 // Historial de revisiones
-//          01/10/2022 - Creación (primera versión) del código
+//          18/09/2024 - Creación (primera versión) del código
 // Bugs:
-//          - Repite dos veces la última línea del fichero de lectura.
+//          - Repite una vez la última línea del fichero de lectura.
  
 
 

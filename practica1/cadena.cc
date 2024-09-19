@@ -3,16 +3,16 @@
 // Grado en Ingeniería Informática
 // Asignatura: Computabilidad y Algoritmia
 // Curso: 2º
-// Práctica 1: Símbolos, alfabetos y cadenas
+// Práctica 2: Símbolos, alfabetos y cadenas
 // Autor: Aarón Ramírez Valencia
 // Correo: alu0101438238@ull.edu.es
-// Fecha: 01/10/2022
+// Fecha: 18/09/2024
 // Archivo cadena.cc: 
 //          Contiene la implementación de la clase Cadena y sus funciones.
 // Referencias:
 //          Enlaces de interés
 // Historial de revisiones
-//          01/10/2022 - Creación (primera versión) del código  
+//          18/09/2024 - Creación (primera versión) del código  
 
 #include <iostream>
 #include <string>

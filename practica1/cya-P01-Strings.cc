@@ -3,10 +3,10 @@
 // Grado en Ingeniería Informática
 // Asignatura: Computabilidad y Algoritmia
 // Curso: 2º
-// Práctica 1: Símbolos, alfabetos y cadenas
+// Práctica 2: Símbolos, alfabetos y cadenas
 // Autor: Aarón Ramírez Valencia
 // Correo: alu0101438238@ull.edu.es
-// Fecha: 01/10/2022
+// Fecha: 18/09/2024
 // Archivo cya-P01-Strings.cc: programa cliente.
 //          Contiene la función main del proyecto que usa la funcion
 //          que realiza el trabajo de leer el fichero de entrada
@@ -15,7 +15,7 @@
 // Referencias:
 //          Enlaces de interés
 // Historial de revisiones
-//          01/10/2022 - Creación (primera versión) del código
+//          18/09/2024 - Creación (primera versión) del código
 
 #include <iostream>
 #include "functions.h"
