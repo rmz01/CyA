@@ -3,7 +3,7 @@
 // Grado en Ingeniería Informática
 // Asignatura: Computabilidad y Algoritmia
 // Curso: 2º
-// Práctica 2: Símbolos, alfabetos y cadenas
+// Práctica 2: Cadenas y lenguajes
 // Autor: Aarón Ramírez Valencia
 // Correo: alu0101438238@ull.edu.es
 // Fecha: 18/09/2024
@@ -36,7 +36,7 @@ bool Alfabeto::verify(Simbolo symbol) {
   return alphabet_.find(symbol) != alphabet_.end();
 }
 
-Simbolo Alfabeto::getSymbol(std::set<Simbolo>::size_type n) const {  // Change int to std::set<Simbolo>::size_type
+Simbolo Alfabeto::getSymbol(std::set<Simbolo>::size_type n) const {
   if (n >= alphabet_.size()) {
     throw std::out_of_range("Index out of range");
   }

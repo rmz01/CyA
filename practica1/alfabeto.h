@@ -3,7 +3,7 @@
 // Grado en Ingeniería Informática
 // Asignatura: Computabilidad y Algoritmia
 // Curso: 2º
-// Práctica 2: Símbolos, alfabetos y cadenas
+// Práctica 2: Cadenas y lenguajes
 // Autor: Aarón Ramírez Valencia
 // Correo: alu0101438238@ull.edu.es
 // Fecha: 18/09/2024

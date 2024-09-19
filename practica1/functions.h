@@ -3,7 +3,7 @@
 // Grado en Ingeniería Informática
 // Asignatura: Computabilidad y Algoritmia
 // Curso: 2º
-// Práctica 2: Símbolos, alfabetos y cadenas
+// Práctica 2: Cadenas y lenguajes
 // Autor: Aarón Ramírez Valencia
 // Correo: alu0101438238@ull.edu.es
 // Fecha: 18/09/2024
@@ -18,11 +18,11 @@
 
 #include <iostream>
 
-const std::string kHelpText = "./p01_strings -- Símbolos, Alfabetos y Cadenas \n\
-  Como usar: ./p01_strings fichero_entrada fichero_salida opcode. \n \n\
+const std::string kHelpText = "./p02_strings -- Símbolos, Alfabetos y Cadenas \n\
+  Como usar: ./p02_strings fichero_entrada fichero_salida opcode. \n \n\
 	fichero_entrada: Fichero que debe proporcionar un alfabeto y a su vez una cadena con la que operar. \n\
   fichero_salida:  Fichero que debe dar los resultados de la operación realizada. \n\
-  opcode: Función a realizar (1)Longitud, (2)Inversa, (3)Prefijos, (4)Sufijos, (5)Subcadenas. \n";
+  opcode: Función a realizar (1)Alfabeto, (2)Longitud, (3)Inversa, (4)Prefijos, (5)Sufijos. \n";
 
 void Usage(int argc, char *argv[]);
 void Options(const std::string input_file, const std::string output_file, const int opcode);
