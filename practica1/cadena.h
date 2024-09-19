@@ -36,10 +36,10 @@ class Cadena {
 
   // funciones
   int Longitud();
+  Alfabeto alphabet();
   std::string Inversa();
   std::string Prefijos();
   std::string Sufijos();
-  std::string NoApariciones();
 };
 
 #endif

@@ -22,7 +22,7 @@
 // Constructor de la clase Cadena
 Cadena::Cadena(std::string my_string) {
 
-  //Buscar si hay "espacios" en la frase
+  // Buscar si hay "espacios" en la frase
   const char SPACE = ' ';
   int count{0};
   for(unsigned i = 0; i < my_string.length(); i++) {
@@ -31,7 +31,7 @@ Cadena::Cadena(std::string my_string) {
     }
   }
 
-  //Caso 1: Incluya Alfabeto
+  // Caso 1: Incluya Alfabeto
   if(count > 0) {
     //cadena
     for(unsigned i = my_string.find_last_of(SPACE) + 1; i < my_string.length(); i++) {
@@ -48,7 +48,7 @@ Cadena::Cadena(std::string my_string) {
     }
   }
 
-  //Caso 2: No incluya Alfabeto, sino solo la cadena
+  // Caso 2: No incluya Alfabeto, sino solo la cadena
   else {
     for(unsigned i = 0; i < my_string.length(); i++) {
       //Alfabeto
@@ -64,7 +64,7 @@ Cadena::Cadena(std::string my_string) {
     }
   }
 
-    //Verificar que la cadena pertenece a su alfabeto;
+  // Verificar que la cadena pertenece a su alfabeto;
   for(unsigned i = 0; i < string_.length(); i++) {
     Simbolo aux;
     std::string aux_string{string_[i]};
@@ -74,6 +74,11 @@ Cadena::Cadena(std::string my_string) {
       exit(EXIT_SUCCESS);
     } 
   }
+}
+
+// Funcion que devuelve el alfabeto de la cadena
+Alfabeto Cadena::alphabet() {
+  return alphabet_;
 }
 
 //Función que devuelve la longitud de la cadena
@@ -127,31 +132,3 @@ std::string Cadena::Sufijos() {
   }
   return out;
 }
-
-std::string Cadena::NoApariciones() {
-  bool visto = false;
-  std::string veces = " ";
-  int i{0};
-  unsigned j{0};
-
-  while(i < alphabet_.getSize()) {
-    Simbolo unique_symbol = alphabet_.getSymbol(i);
-    std::string used_symbol = unique_symbol.getData();
-    while(j < string_.length() && visto == false) {
-      std::string used_chain;
-      used_chain = string_[j];
-      if(used_symbol == used_chain) {
-        visto = true;
-        std::cout << "EL SIMBOLO: " << used_symbol << " APARECE EN LA CADENA."<< std::endl;
-      }
-      j++;
-    }
-    if (visto == false) {
-    std::cout << "EL SIMBOLO " << used_symbol << " NO HA APARECIDO." << std::endl;
-    }
-    visto = false;
-    i++;
-    }
-
-  return veces;
-  }
