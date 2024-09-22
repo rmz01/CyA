@@ -8,7 +8,7 @@
 // Correo: alu0101438238@ull.edu.es
 // Fecha: 18/09/2024
 // Archivo cadena.h: 
-//          Contiene la definición de la clase Cadena.
+//          Contiene la definición de la clase cadena.
 // Referencias:
 //          Enlaces de interés
 // Historial de revisiones
@@ -19,27 +19,33 @@
 
 #include <iostream>
 #include <string>
+#include <vector>
 #include "alfabeto.h"
 #include "simbolo.h"
+#include "lenguaje.h"
+
 
 /** Clase Cadena:
  * Esta clase se usa para separar la cadena de su alfabeto.
  */
 class Cadena {
- private:
-  Alfabeto alphabet_;
-  std::string string_;
-
  public:
-  // constructor de la clase cadena
+  // constructores de la clase cadena
+  Cadena() = default;
   Cadena(std::string my_string);
 
   // funciones
   int Longitud();
   Alfabeto alphabet();
-  std::string Inversa();
-  std::string Prefijos();
-  std::string Sufijos();
+  std::vector<Simbolo> Inversa();
+  Lenguaje Prefijos();
+  Lenguaje Sufijos();
+
+ private:
+  Alfabeto alphabet_;
+  std::vector<Simbolo> string_;
 };
+
+std::ostream& operator<<(std::ostream &os, const std::vector<Simbolo> &vec);
 
 #endif

@@ -17,11 +17,6 @@
 #include <iostream>
 #include "simbolo.h"
 
-// Constructor de la clase Simbolo
-Simbolo::Simbolo(std::string data) {
-  data_ = data;
-}
-
 // sobrecarga operador <<
 std::ostream& operator<<(std::ostream &os, const Simbolo &symbol){
   os << symbol.getData();

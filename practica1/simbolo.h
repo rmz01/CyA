@@ -27,9 +27,9 @@ class Simbolo {
  public:
   // constructores
   Simbolo() = default;
-  Simbolo(std::string data);
+  Simbolo(std::string data) : data_(data) {};
 
-  //Getters & Setters
+  // Getters & Setters
   std::string getData() const {return data_;}; 
   void setData(std::string data) {data_ = data;}; 
 

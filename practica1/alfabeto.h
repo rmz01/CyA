@@ -44,6 +44,7 @@ class Alfabeto {
   void add(Simbolo symbol);
   bool verify(Simbolo symbol);
 
+  //sobrecarga operador <<
   friend std::ostream& operator<<(std::ostream &os, const Alfabeto &alfabet);
 
  private:

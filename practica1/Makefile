@@ -1,6 +1,6 @@
 CXXFLAGS = -g -Wall
 CXX = g++
-OBJS = $(TARGET).o cadena.o alfabeto.o simbolo.o functions.o
+OBJS = $(TARGET).o lenguaje.o cadena.o alfabeto.o simbolo.o functions.o
 TARGET = cya-P01-Strings
 
 $(TARGET): $(OBJS)
@@ -8,6 +8,9 @@ $(TARGET): $(OBJS)
 
 $(TARGET).o : $(TARGET).cc
 	@$(CXX) -c $(CXXFLAGS) $(TARGET).cc
+
+lenguaje.o : lenguaje.cc lenguaje.h
+	@$(CXX) -c $(CXXFLAGS) lenguaje.cc
 
 cadena.o : cadena.cc cadena.h
 	@$(CXX) -c $(CXXFLAGS) cadena.cc
