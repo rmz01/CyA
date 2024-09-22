@@ -7,7 +7,7 @@
 // Autor: Aarón Ramírez Valencia
 // Correo: alu0101438238@ull.edu.es
 // Fecha: 18/09/2024
-// Archivo cya-P01-Strings.cc: programa cliente.
+// Archivo cya-P02.cc: programa cliente.
 //          Contiene la función main del proyecto que usa la funcion
 //          que realiza el trabajo de leer el fichero de entrada
 //          y hacer uso de una de las opciones dadas para escribir su
