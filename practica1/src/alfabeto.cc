@@ -50,7 +50,7 @@ std::ostream& operator<<(std::ostream &os, const Alfabeto &alfabet) {
   os << "{";
   for (auto it = alfabet.alphabet_.begin(); it != alfabet.alphabet_.end(); ++it) {
     if (it != alfabet.alphabet_.begin()) {
-      os << ",";
+      os << ", ";
     }
     os << *it;
   }

@@ -20,8 +20,8 @@
 
 #include <iostream>
 
-const std::string kHelpText = "./p02_strings -- Símbolos, Alfabetos y Cadenas \n\
-  Como usar: ./p02_strings fichero_entrada fichero_salida opcode. \n \n\
+const std::string kHelpText = "./cya-P02 -- Símbolos, Alfabetos y Cadenas \n\
+  Como usar: ./cya-P02 fichero_entrada fichero_salida opcode. \n \n\
 	fichero_entrada: Fichero que debe proporcionar un alfabeto y a su vez una cadena con la que operar. \n\
   fichero_salida:  Fichero que debe dar los resultados de la operación realizada. \n\
   opcode: Función a realizar (1)Alfabeto, (2)Longitud, (3)Inversa, (4)Prefijos, (5)Sufijos. \n";
