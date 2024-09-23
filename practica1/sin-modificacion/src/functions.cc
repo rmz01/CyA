@@ -64,28 +64,33 @@ void Options(const std::string kInputFileName, const std::string kOutputFileName
   }
 
   std::string string;
+  bool first_line = true;
 
   while(std::getline(input_file, string)) {
+    if (!first_line) {
+      output_file << "\n";
+    }
+    first_line = false;
+
     Cadena chain{string};
     switch (kOpcode) {
       case 1:
-        output_file << chain.alphabet() << std::endl;
+        output_file << chain.alphabet();
         break;
       case 2:
-        output_file << chain.Longitud() << std::endl;
+        output_file << chain.Longitud();
         break;
       case 3:
-        output_file << chain.Inversa() << std::endl;
+        output_file << chain.Inversa();
         break;
       case 4:
-        output_file << chain.Prefijos() << std::endl;
+        output_file << chain.Prefijos();
         break;
       case 5:
-        output_file << chain.Sufijos() << std::endl;
+        output_file << chain.Sufijos();
         break;
     }
-        
-    }
+  }
 
   input_file.close();
   output_file.close();
