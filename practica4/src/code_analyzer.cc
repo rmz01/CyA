@@ -90,20 +90,20 @@ Code_Analyzer::Code_Analyzer(std::string program) {
   */
 void Code_Analyzer::Save(const std::string file) {
   std::ofstream outfile(file);
-  outfile << "PROGRAM: " << Get_Program() << std::endl << std::endl;
+  outfile << "PROGRAM: " << Get_Program() << std::endl;
 
   outfile << "DESCRIPTION: " << std::endl << description_;
   outfile << std::endl << std::endl;
 
-  outfile << "STATEMENTS: " << std::endl;
-  for (int i = 0; i < statements_.size(); ++i) {
-    outfile << statements_[i] << std::endl;
-  }
-  outfile << std::endl;
-
   outfile << "VARIABLES: " << std::endl;
   for (int i = 0; i < variables_.size(); ++i) {
     outfile << variables_[i] << std::endl;
+  }
+  outfile << std::endl;
+
+  outfile << "STATEMENTS: " << std::endl;
+  for (int i = 0; i < statements_.size(); ++i) {
+    outfile << statements_[i] << std::endl;
   }
   outfile << std::endl;
 
