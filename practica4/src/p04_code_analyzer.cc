@@ -25,15 +25,15 @@ int main(int argc, char* argv[]) {
       std::string parameter{argv[1]};
       if (parameter == "--help") {
         std::cout << "El programa se ejecuta de la siguiente manera: " << std::endl;
-        std::cout << argv[0] << " code.cc codesheme.txt" << std::endl;
-        std::cout << "code.cc -> Programa a analizar" << std::endl;
-        std::cout << "codescheme.txt -> Fichero de salida" << std::endl;
+        std::cout << argv[0] << " factorial.cc factorialscheme.txt" << std::endl;
+        std::cout << "factorial.cc -> Programa a analizar" << std::endl;
+        std::cout << "factorialscheme.txt -> Fichero de salida" << std::endl;
         exit(EXIT_SUCCESS);
       }
       std::cerr << "Error en el numero de parametros. \nPara mas informacion, escriba el comando: ./p02_languages --help" << std::endl;
       exit(EXIT_FAILURE);
     } else {
-      std::cerr << "Error en el numero de parametros. \nPara mas informacion, escriba el comando: ./p02_languages --help" << std::endl;
+      std::cerr << "Este programa necesita 2 parámetros, intente ./p02_languages --help" << std::endl;
       exit(EXIT_FAILURE);
     }
   } else {
