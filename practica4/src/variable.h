@@ -21,7 +21,8 @@
 #include <string>
 #include <regex>
 
-const std::regex kIntDoubleSearch("\\s+?int|double .*");
+const std::regex kIntDoubleSearch(R"(\b(int|double)\s+\w+\s*(=|;))");
+const std::regex kForLoopSearch(R"(\bfor\s*\()");
 const std::regex kIntSearch("\\s*int.*");
 const std::regex kVSearchName("[a-zA-Z0-9_-]+");
 const std::regex kVSearchNumber("[0-9.]+");

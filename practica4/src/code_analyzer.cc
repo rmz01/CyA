@@ -48,8 +48,7 @@ Code_Analyzer::Code_Analyzer(std::string program) {
       int found = target.find_first_of("//");
       Comment new_comment(text_.size(), target.substr(found));
       comments_.push_back(new_comment);
-    }
-    else if (regex_search(target, kMultiCommentStart) == true) {
+    } else if (regex_search(target, kMultiCommentStart) == true) {
       std::string string;
       int start = text_.size();
       while (regex_search(target, kMultiCommentFinish) == false) {
@@ -74,11 +73,12 @@ Code_Analyzer::Code_Analyzer(std::string program) {
     }
     
     if (regex_search(target, kMainSearch) == true) {
-        main_ = true;
-    }
-    else if (regex_search(target, kIntDoubleSearch) == true) {
-      Variable new_variable(text_.size(), target);
-      variables_.push_back(new_variable);
+      main_ = true;
+    } else if (regex_search(target, kIntDoubleSearch) == true) {
+      if (!regex_search(target, kForLoopSearch)) {  // Verificar si la declaración esta dentro de un bucle for
+        Variable new_variable(text_.size(), target);
+        variables_.push_back(new_variable);
+      }
     }
   }
   infile.close();

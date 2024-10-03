@@ -11,13 +11,9 @@ DESCRIPTION:
  * @see https :// github . com / IB -2023 -2024/ IB - class - code - examples /
  */
 
-VARIABLES:
-[Line 16] INT: Factorial
+VARIABLES: 
 [Line 22] INT: factorial = 1
-[Line 23] INT: i = 1
 [Line 32] INT: limit
-[Line 34] INT: i = 1
-[Line 35] DOUBLE: Factorial
 
 STATEMENTS: 
 [Lines 23] LOOP : for
