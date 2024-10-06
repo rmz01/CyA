@@ -39,19 +39,19 @@ std::string Code_Analyzer::Get_Program() const {
 Code_Analyzer::Code_Analyzer(std::string program) {
   std::ifstream infile(program);
   Set_Program(program);
-  std::string target;
-  description_ = Comment (0, "No description");
-  main_ = false;
+  std::string target;  // Variable que almacena la linea actual
+  description_ = Comment (0, "No description"); // Inicializa la descripción con un comentario por defecto
+  main_ = false; // Inicializa la variable main_ que indica si la función main esta presente
   while (getline(infile, target)) {
     text_.push_back(target);
-    if (regex_search(target, kComment) == true) {
+    if (regex_search(target, kComment) == true) {  // Busca si la linea es un comentario
       int found = target.find_first_of("//");
       Comment new_comment(text_.size(), target.substr(found));
       comments_.push_back(new_comment);
-    } else if (regex_search(target, kMultiCommentStart) == true) {
+    } else if (regex_search(target, kMultiCommentStart) == true) {  // Busca si la linea es un comentario de varias lineas
       std::string string;
       int start = text_.size();
-      while (regex_search(target, kMultiCommentFinish) == false) {
+      while (regex_search(target, kMultiCommentFinish) == false) {  // Mientras no se encuentre el final del comentario
         string+= "\n" + target;
         getline(infile, target);
         text_.push_back(target);
@@ -67,14 +67,14 @@ Code_Analyzer::Code_Analyzer(std::string program) {
       }
     }
 
-    if (regex_search(target, kSearchLoop) == true) {
+    if (regex_search(target, kSearchLoop) == true) {  // Busca si la linea es un bucle
       Statement new_statement(text_.size(), target);
       statements_.push_back(new_statement);
     }
     
-    if (regex_search(target, kMainSearch) == true) {
+    if (regex_search(target, kMainSearch) == true) {  // Busca si la linea es la función main
       main_ = true;
-    } else if (regex_search(target, kIntDoubleSearch) == true) {
+    } else if (regex_search(target, kIntDoubleSearch) == true) {  // Busca si la linea es una declaración de variable
       if (!regex_search(target, kForLoopSearch)) {  // Verificar si la declaración esta dentro de un bucle for
         Variable new_variable(text_.size(), target);
         variables_.push_back(new_variable);

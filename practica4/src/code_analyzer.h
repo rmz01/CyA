@@ -24,9 +24,26 @@
 #include "variable.h"
 #include "statement.h"
 
+/*
+  Coincide con los caracteres "//" que indican el inicio de un comentario de una sola línea en C++.
+  .*: Coincide con cualquier carácter (excepto saltos de línea) cero o más veces.
+*/
 const std::regex kComment("//.*");
+
+/*
+  /\\*.*: Coincide con los caracteres "/*" que indican el inicio de un comentario de varias líneas en C++.
+  : Coincide con cualquier carácter (excepto saltos de línea) cero o más veces.
+*/
 const std::regex kMultiCommentStart("/\\*.*");
+
+/*
+  Coincide con cualquier carácter (excepto saltos de línea) cero o más veces.
+*/
 const std::regex kMultiCommentFinish(".*\\*/");
+
+/*
+  int main: Coincide con la declaración de la función principal "int main".
+*/
 const std::regex kMainSearch("int main");
 
 // Clase dedicada a analizar el archivo de entrada

@@ -21,10 +21,39 @@
 #include <string>
 #include <regex>
 
+/*
+  \b: Coincide con un límite de palabra.
+  (int|double): Coincide con "int" o "double".
+  \s+: Coincide con uno o más espacios en blanco.
+  \w+: Coincide con una o más letras, dígitos o guiones bajos (es decir, un identificador de variable).
+  \s*: Coincide con cero o más espacios en blanco.
+  (=|;): Coincide con un signo igual "=" o un punto y coma ";".
+*/
 const std::regex kIntDoubleSearch(R"(\b(int|double)\s+\w+\s*(=|;))");
+
+/*
+  \b: Coincide con un límite de palabra.
+  for: Coincide con la palabra "for".
+  \s*: Coincide con cero o más espacios en blanco.
+  \(: Coincide con un paréntesis de apertura "(".
+*/
 const std::regex kForLoopSearch(R"(\bfor\s*\()");
+
+/*
+  \s*: Coincide con cero o más espacios en blanco.
+  int: Coincide con la palabra "int".
+  .*: Coincide con cualquier carácter (excepto saltos de línea) cero o más veces.
+*/
 const std::regex kIntSearch("\\s*int.*");
+
+/*
+  [a-zA-Z0-9_-]+: Coincide con una o más letras (mayúsculas o minúsculas), dígitos, guiones bajos o guiones.
+*/
 const std::regex kVSearchName("[a-zA-Z0-9_-]+");
+
+/*
+  [0-9.]+: Coincide con uno o más dígitos o puntos.
+*/
 const std::regex kVSearchNumber("[0-9.]+");
 
 // Clase dedicada a almacenar la información de las variables

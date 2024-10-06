@@ -20,8 +20,25 @@
 #include <string>
 #include <regex>
 
+/*
+  for|while: Coincide con la palabra "for" o "while".
+  \s*: Coincide con cero o más espacios en blanco.
+  (.+): Coincide con cualquier carácter (excepto saltos de línea) una o más veces.
+*/
 const std::regex kSearchLoop("for|while \\s*?(.+)");
+
+/*
+  for: Coincide con la palabra "for".
+  \s*: Coincide con cero o más espacios en blanco.
+  (.+): Coincide con cualquier carácter (excepto saltos de línea) una o más veces.
+*/
 const std::regex kSearchFor("for\\s*?(.+)");
+
+/*
+  while: Coincide con la palabra "while".
+  \s*: Coincide con cero o más espacios en blanco.
+  (.+): Coincide con cualquier carácter (excepto saltos de línea) una o más veces.
+*/
 const std::regex kSearchWhile("while\\s*?(.+)");
 
 // Clase dedicada a almacenar la información de los bucles
