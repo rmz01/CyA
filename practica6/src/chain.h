@@ -23,6 +23,7 @@
 
 class Chain {
   public:
+    Chain() = default;
     Chain(std::string chain);
     Chain(std::vector<std::string> chain);
     ~Chain();

@@ -28,7 +28,7 @@
 
 class State {
  public:
-  State();
+  State() = default;
   State(unsigned id, bool aceptacion = false);
 
   unsigned getID();

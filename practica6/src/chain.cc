@@ -16,22 +16,32 @@
 
 #include "chain.h"
 
-// Inicializa el vector de simbolos con el vector de simbolos recibido
+/**
+  * @brief constructor of the class Chain
+  * @param chain A vector of strings.
+  */
 Chain::Chain(std::vector<std::string> chain): chain_(chain) {}
 
-// Inicializa el vector de simbolos con los simbolos de la cadena recibida
+/**
+  * @brief constructor of the class Chain
+  * @param chain A string.
+  */
 Chain::Chain(std::string chain) {
   for (unsigned i = 0; i < chain.size(); i++)
     chain_.push_back(std::string(1, chain[i]));
 }
 
-// El constructor por defecto vacia la cadena
+/**
+  * @brief destructor of the class Chain
+  */
 Chain::~Chain() {
   chain_.clear();
 }
 
-// getter cadena 
+/**
+  * @brief Get the chain_ object
+  * @return The chain_ value.
+  */
 std::vector<std::string> Chain::getChain() {
   return chain_;
 }
-

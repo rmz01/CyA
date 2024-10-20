@@ -16,6 +16,12 @@
 
 #include "automaton.h"
 
+
+/**
+  * @brief constructor of the class Automaton
+  * @param inputAutomata A string reference.
+  * @param inputStrings A string reference.
+  */
 Automaton::Automaton(std::string inputAutomata, std::string inputStrings) {
   std::string line;
   std::ifstream fileAutomata(inputAutomata);
@@ -50,6 +56,11 @@ Automaton::Automaton(std::string inputAutomata, std::string inputStrings) {
   }
 }
 
+/**
+  * @brief Overload the operator =
+  * @param alfabeto A reference to an Alphabet object.
+  * @return An Alphabet object.
+  */
 bool Automaton::evaluate(std::string string) {
   bool isAccepted = false;
   actualStates_.clear();

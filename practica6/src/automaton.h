@@ -27,6 +27,7 @@
 
 class Automaton {
   public:
+    Automaton() = default;
     Automaton(std::string automata, std::string strings);
     bool evaluate(std::string string);
 

@@ -16,30 +16,55 @@
 
 #include "state.h"
 
-State::State() {
-}
-
+/**
+  * @brief constructor of the class State
+  * @param id An unsigned.
+  * @param aceptacion A bool.
+  */
 State::State(unsigned id, bool aceptacion) {
   id_ = id;
   aceptacion_ = aceptacion;
 }
 
+/**
+  * @brief Get the id_ object
+  * @return The id_ value.
+  */
 unsigned State::getID() {
   return id_;
 }
 
+/**
+  * @brief Get the aceptacion_ object
+  * @return The aceptacion_ value.
+  */
 bool State::Accepted() {
   return aceptacion_;
 }
 
+/**
+  * @brief Set the transiciones_ object
+  * @param symbol A string reference.
+  * @param estado An unsigned.
+  */
 void State::addTransition(std::string symbol, unsigned estado) { 
   transiciones_[symbol].push_back(estado);  
 }
 
+/**
+  * @brief Get the transiciones_ object
+  * @param symbol A string reference.
+  * @return The transiciones_ value.
+  */
 std::vector<unsigned> State::getTransition(std::string symbol) {
   return transiciones_[symbol];
 }
 
+/**
+  * @brief Get the transiciones_ object
+  * @param symbol A string reference.
+  * @return The transiciones_ value.
+  */
 std::vector<unsigned> State::getStates(std::string symbol) {
   return transiciones_[symbol];  
 }
