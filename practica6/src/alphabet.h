@@ -23,19 +23,20 @@
 #include <string>
 #include <algorithm>
 #include "chain.h"
+#include "symbol.h"
 
 class Alphabet {
   public:
-    Alphabet(); // constructor sin parametros
+    Alphabet() = default; // constructor sin parametros
     Alphabet(std::string alphabet); // constructor al que se le pasa una string
 
-    std::set<std::string>& getSymbols();
+    std::set<Symbol>& getSymbols();
 
     Alphabet& operator=(Alphabet& alfabeto); // sobrecarga operator =
     friend std::ostream& operator<<(std::ostream& os, Alphabet& alfabeto); // sobrecarga operator <<
 
   private:
-    std::set<std::string> symbols_;
+    std::set<Symbol> symbols_;
 };
 
 #endif

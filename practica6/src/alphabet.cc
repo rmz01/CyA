@@ -22,10 +22,10 @@
   */
 Alphabet::Alphabet(std::string string) {
   const char SPACE = ' ';
-  symbols_.insert("&");
+  symbols_.insert(Symbol("&"));
   for (unsigned i = 0; i < string.size(); i++) {
     if (string[i] != SPACE)
-      symbols_.insert(std::string(1, string[i]));
+      symbols_.insert(Symbol(std::string(1, string[i])));
   }
 }
 
@@ -33,7 +33,7 @@ Alphabet::Alphabet(std::string string) {
   * @brief Get the symbols_ object
   * @return The symbols_ value.
   */
-std::set<std::string>& Alphabet::getSymbols() {
+std::set<Symbol>& Alphabet::getSymbols() {
   return symbols_;
 }
 

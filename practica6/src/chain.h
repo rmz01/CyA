@@ -20,18 +20,22 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include "symbol.h"
+
+class Alphabet;
 
 class Chain {
   public:
     Chain() = default;
     Chain(std::string chain);
-    Chain(std::vector<std::string> chain);
+    Chain(std::vector<Symbol> chain);
     ~Chain();
 
-    std::vector<std::string> getChain();
+    std::vector<Symbol> getChain();
     
   private:
-    std::vector<std::string> chain_;
+    Alphabet* alphabet_;
+    std::vector<Symbol> chain_;
 };
 
 #endif

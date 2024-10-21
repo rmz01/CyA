@@ -15,12 +15,14 @@
 //          17/10/2024 - Creación (primera versión) del código
 
 #include "chain.h"
+#include "alphabet.h"
+
 
 /**
   * @brief constructor of the class Chain
   * @param chain A vector of strings.
   */
-Chain::Chain(std::vector<std::string> chain): chain_(chain) {}
+Chain::Chain(std::vector<Symbol> chain): chain_(chain) {}
 
 /**
   * @brief constructor of the class Chain
@@ -42,6 +44,6 @@ Chain::~Chain() {
   * @brief Get the chain_ object
   * @return The chain_ value.
   */
-std::vector<std::string> Chain::getChain() {
+std::vector<Symbol> Chain::getChain() {
   return chain_;
 }
