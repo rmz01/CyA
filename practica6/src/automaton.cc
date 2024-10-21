@@ -27,7 +27,7 @@ Automaton::Automaton(std::string inputAutomata, std::string inputStrings) {
   std::ifstream fileAutomata(inputAutomata);
   std::getline(fileAutomata, line);   
   Alphabet alfabeto(line);  // Alfabeto
-  int nEntradas, estadoaArranque;
+  int nEntradas;
   fileAutomata >> nEntradas;  // Numeros de estados
   fileAutomata >> start_;   // estado inicial
 
@@ -68,7 +68,7 @@ bool Automaton::evaluate(std::string string) {
   std::set<unsigned> transitedStates;
   std::string symbol;
   // Calculamos para cada estado actual, el conjunto transitado
-  for (int i = 0; i < string.size(); i++) {
+  for (size_t i = 0; i < string.size(); i++) {
     symbol = string[i];
     // Transitamos al propio estado
     if (symbol == "&") {

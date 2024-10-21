@@ -25,7 +25,12 @@
 #include <map>
 
 #include "string.h"
+#include "symbol.h"
 
+/* 
+Clase que representa un estado de un automata finito. Cada estado tiene un identificador, un booleano que 
+indica si es de aceptacion y un map que contiene las transiciones que puede realizar.
+*/
 class State {
  public:
   State() = default;
@@ -33,9 +38,9 @@ class State {
 
   unsigned getID();
   bool Accepted();
-  void addTransition(std::string symbol, unsigned estado);
-  std::vector<unsigned> getStates(std::string symbol);
-  std::vector<unsigned> getTransition(std::string symbol);
+  void addTransition(Symbol simbolo, unsigned estado);
+  std::vector<unsigned> getStates(Symbol simbolo);
+  std::vector<unsigned> getTransition(Symbol simbolo);
 
   State& operator=(State& a);
   friend std::ostream& operator<<(std::ostream& os, State& a);
@@ -43,7 +48,7 @@ class State {
   private:
     unsigned id_;
     bool aceptacion_;
-    std::map<std::string, std::vector<unsigned>> transiciones_;
+    std::map<Symbol, std::vector<unsigned>> transiciones_;
 };
 
 #endif

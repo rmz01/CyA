@@ -1,3 +1,19 @@
+// Universidad de La Laguna
+// Escuela Superior de Ingenieria y Tecnologia
+// Grado en Ingenieria Informatica
+// Asignatura: Computabilidad y Algoritmia
+// Curso: 2º
+// Practica 6 : Simulacion de Automatas Finitos
+// Autor: Aarón Ramírez Valencia
+// Correo: alu0101438238@ull.edu.es
+// Fecha: 17/10/2024
+// Archivo language.h: 
+//          Contiene la definicion de la clase language.
+// Referencias:
+//          Enlaces de interés
+// Historial de revisiones
+//          17/10/2024 - Creación (primera versión) del código
+
 #ifndef LANGUAGE_H_
 #define LANGUAGE_H_
 

@@ -21,6 +21,7 @@
 #include <vector>
 #include <string>
 #include "symbol.h"
+#include "alphabet.h"
 
 class Alphabet;
 

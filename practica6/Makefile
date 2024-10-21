@@ -1,37 +1,31 @@
-CC=g++
-CXXFLAGS=-g -std=c++17
-ODIR=src
-BUILD=build
+# Variables
+CXX = g++
+CXXFLAGS = -Wall -std=c++17 -Iinclude
+SRC_DIR = src
+BUILD_DIR = build
+INCLUDE_DIR = include
+TEST_DIR = test
 
-_OBJ=$ $(BUILD)/symbol.o $(BUILD)/alphabet.o $(BUILD)/chain.o $(BUILD)/language.o $(BUILD)/state.o $(BUILD)/automaton.o $(BUILD)/p06_automata_simulator.o
-OBJ=$(patsubst %,%,$(_OBJ))
+# Archivos fuente y objeto
+SRC_FILES = $(filter-out $(SRC_DIR)/p06_automata_simulator.cc, $(wildcard $(SRC_DIR)/*.cc))
+OBJ_FILES = $(patsubst $(SRC_DIR)/%.cc, $(BUILD_DIR)/%.o, $(SRC_FILES))
+EXEC = p06_automata_simulator
 
-all:p06_automata_simulator
-$(BUILD)/p06_automata_simulator.o: $(ODIR)/p06_automata_simulator.cc
-	$(CC) -c -o $@ $< $(CXXFLAGS)
+# Target principal
+all: $(EXEC)
 
-$(BUILD)/symbol.o: $(ODIR)/symbol.cc
-	$(CC) -c -o $@ $< $(CXXFLAGS)
+# Compilación del ejecutable principal
+$(EXEC): $(OBJ_FILES) $(BUILD_DIR)/p06_automata_simulator.o
+	$(CXX) $(CXXFLAGS) -o $@ $^
 
-$(BUILD)/alphabet.o: $(ODIR)/alphabet.cc
-	$(CC) -c -o $@ $< $(CXXFLAGS)
+# Regla para compilar los archivos fuente a objetos (excepto p06_automata_simulator.cc)
+$(BUILD_DIR)/%.o: $(SRC_DIR)/%.cc $(INCLUDE_DIR)/%.h
+	$(CXX) $(CXXFLAGS) -c $< -o $@
 
-$(BUILD)/chain.o: $(ODIR)/chain.cc
-	$(CC) -c -o $@ $< $(CXXFLAGS)
+# Regla específica para compilar p06_automata_simulator.cc (sin dependencia de un encabezado)
+$(BUILD_DIR)/p06_automata_simulator.o: $(SRC_DIR)/p06_automata_simulator.cc
+	$(CXX) $(CXXFLAGS) -c $< -o $@
 
-$(BUILD)/language.o: $(ODIR)/language.cc
-	$(CC) -c -o $@ $< $(CXXFLAGS)
-
-$(BUILD)/state.o: $(ODIR)/state.cc
-	$(CC) -c -o $@ $< $(CXXFLAGS)
-
-$(BUILD)/automaton.o: $(ODIR)/automaton.cc
-	$(CC) -c -o $@ $< $(CXXFLAGS)
-
-p06_automata_simulator: $(OBJ)
-	$(CC) -o $@ $^ $(CXXFLAGS) -lm
-
-.PHONY:clean
-
+# Limpiar archivos objeto y el ejecutable
 clean:
-	rm -rf build/* p06_automata_simulator
+	rm -f $(BUILD_DIR)/*.o $(EXEC)

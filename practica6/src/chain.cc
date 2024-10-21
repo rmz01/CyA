@@ -15,7 +15,6 @@
 //          17/10/2024 - Creación (primera versión) del código
 
 #include "chain.h"
-#include "alphabet.h"
 
 
 /**

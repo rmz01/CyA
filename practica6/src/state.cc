@@ -47,8 +47,8 @@ bool State::Accepted() {
   * @param symbol A string reference.
   * @param estado An unsigned.
   */
-void State::addTransition(std::string symbol, unsigned estado) { 
-  transiciones_[symbol].push_back(estado);  
+void State::addTransition(Symbol simbolo, unsigned estado) { 
+  transiciones_[simbolo].push_back(estado); 
 }
 
 /**
@@ -56,8 +56,8 @@ void State::addTransition(std::string symbol, unsigned estado) {
   * @param symbol A string reference.
   * @return The transiciones_ value.
   */
-std::vector<unsigned> State::getTransition(std::string symbol) {
-  return transiciones_[symbol];
+std::vector<unsigned> State::getTransition(Symbol simbolo) {
+  return transiciones_[simbolo];
 }
 
 /**
@@ -65,6 +65,6 @@ std::vector<unsigned> State::getTransition(std::string symbol) {
   * @param symbol A string reference.
   * @return The transiciones_ value.
   */
-std::vector<unsigned> State::getStates(std::string symbol) {
-  return transiciones_[symbol];  
+std::vector<unsigned> State::getStates(Symbol simbolo) {
+  return transiciones_[simbolo];  
 }

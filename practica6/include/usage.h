@@ -31,7 +31,7 @@ void Usage(int argc, char* argv[]) {
 
     if(argc == 2) {
       if(parameter == "--help") {
-        std::cout << "Modo de empleo: ./p06_automata_simulator input.fa input.txt" << std::endl;
+        std::cout << "Modo de empleo: ./p06_automata_simulator test/input.fa test/input.txt" << std::endl;
         std::cout << "Programa que dado un automata y una serie de cadenas, muestra si dichas cadenas son aceptadas. " << std::endl;
         exit(EXIT_SUCCESS);
       }
