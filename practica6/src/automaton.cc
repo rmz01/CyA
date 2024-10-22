@@ -45,18 +45,21 @@ Automaton::Automaton(std::string inputAutomata, std::string inputStrings) {
     for (int j = 0; j < nTransiciones; j++) {
       // Verificar si el número de transiciones leídas es distinto al especificado
       if (!(fileAutomata >> transicion >> nombreEstadoActual)) {
-        throw std::runtime_error("Número de transiciones no coincide con el especificado");
+        std::cerr << "Número de transiciones no coincide con el especificado" << std::endl;
+        exit(EXIT_FAILURE);
       }
       // Verificar si el símbolo de transición pertenece al alfabeto
       if (alfabeto.getSymbols().find(Symbol(transicion)) == alfabeto.getSymbols().end()) {
-        throw std::runtime_error("Símbolo de transición no definido en el alfabeto: " + transicion);
+        std::cerr << "Símbolo de transición no definido en el alfabeto: " + transicion << std::endl;
+        exit(EXIT_FAILURE);
       }
       states_[nombreEstado]->addTransition(transicion, nombreEstadoActual); // guardamos las transiciones de mi estado base
     }
     
     // Verificar si el número de transiciones leídas es menor que el especificado
     if (fileAutomata.peek() != '\n' && fileAutomata.peek() != EOF) {
-      throw std::runtime_error("Número de transiciones no coincide con el especificado");
+      std::cerr << "Número de transiciones no coincide con el especificado" << std::endl;
+      exit(EXIT_FAILURE);    
     }
   }
 
