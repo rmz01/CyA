@@ -26,15 +26,18 @@
 #include "state.h"
 
 class Automaton {
-  public:
+ public:
     Automaton() = default;
     Automaton(std::string automata, std::string strings);
     bool evaluate(std::string string);
+    void processEpsilonTransitions(); // Nueva función para procesar transiciones epsilon
 
-  private:
+
+ private:
     unsigned start_;
     std::map<unsigned, State*> states_;
     std::set<unsigned> actualStates_;
+
 };
 
 #endif

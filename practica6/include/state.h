@@ -41,6 +41,7 @@ class State {
   void addTransition(Symbol simbolo, unsigned estado);
   std::vector<unsigned> getStates(Symbol simbolo);
   std::vector<unsigned> getTransition(Symbol simbolo);
+  std::vector<unsigned> getEpsilonTransitions();
 
   State& operator=(State& a);
   friend std::ostream& operator<<(std::ostream& os, State& a);

@@ -57,9 +57,9 @@ Automaton::Automaton(std::string inputAutomata, std::string inputStrings) {
 }
 
 /**
-  * @brief Overload the operator =
-  * @param alfabeto A reference to an Alphabet object.
-  * @return An Alphabet object.
+  * @brief evaluate if the string is accepted by the automaton
+  * @param string A string reference.
+  * @return A bool.
   */
 bool Automaton::evaluate(std::string string) {
   bool isAccepted = false;
@@ -67,6 +67,10 @@ bool Automaton::evaluate(std::string string) {
   actualStates_.insert(start_); // comienzo en el nodo inicial
   std::set<unsigned> transitedStates;
   std::string symbol;
+
+  // Procesar transiciones epsilon iniciales
+  processEpsilonTransitions();
+
   // Calculamos para cada estado actual, el conjunto transitado
   for (size_t i = 0; i < string.size(); i++) {
     symbol = string[i];
@@ -74,14 +78,17 @@ bool Automaton::evaluate(std::string string) {
     if (symbol == "&") {
       transitedStates = actualStates_;
     }
-    for (unsigned state : actualStates_) { //
-      for (unsigned stateIDs : states_[state]->getTransition(symbol)){ //
+    for (unsigned state : actualStates_) {
+      for (unsigned stateIDs : states_[state]->getTransition(symbol)){
         transitedStates.insert(stateIDs);
       }
     }
     actualStates_ = transitedStates;
     transitedStates.clear();
   }
+
+  // Procesar transiciones epsilon después de cada símbolo
+  processEpsilonTransitions();
 
   // Reviso si estamos en un estado de aceptacion
   for (unsigned state : actualStates_) {
@@ -92,4 +99,21 @@ bool Automaton::evaluate(std::string string) {
   // Operador ternario que evalua si es aceptada la cadena o no
   std::cout << string << ((isAccepted)?" --- Accepted" : " --- Rejected") << std::endl;
   return isAccepted;
+}
+
+void Automaton::processEpsilonTransitions() {
+  std::set<unsigned> epsilonStates;
+  std::set<unsigned> toProcess = actualStates_;
+
+  while (!toProcess.empty()) {
+    std::set<unsigned> newStates;
+    for (unsigned state : toProcess) {
+      for (unsigned epsilonState : states_[state]->getEpsilonTransitions()) {
+        if (actualStates_.insert(epsilonState).second) {
+          newStates.insert(epsilonState);
+        }
+      }
+    }
+    toProcess = newStates;
+  }
 }

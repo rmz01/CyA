@@ -68,3 +68,11 @@ std::vector<unsigned> State::getTransition(Symbol simbolo) {
 std::vector<unsigned> State::getStates(Symbol simbolo) {
   return transiciones_[simbolo];  
 }
+
+/**
+  * @brief Get the epsilon transitions
+  * @return The epsilon transitions.
+  */
+std::vector<unsigned> State::getEpsilonTransitions() {
+  return transiciones_[Symbol("&")];
+}
