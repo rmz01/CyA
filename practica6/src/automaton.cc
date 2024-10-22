@@ -14,8 +14,8 @@
 // Historial de revisiones
 //          17/10/2024 - Creación (primera versión) del código
 
+#include <stdexcept> 
 #include "automaton.h"
-
 
 /**
   * @brief constructor of the class Automaton
@@ -34,6 +34,7 @@ Automaton::Automaton(std::string inputAutomata, std::string inputStrings) {
   unsigned nombreEstado, nombreEstadoActual;
   int estadoAceptacion, nTransiciones;
   std::string transicion;
+  
   for (int i = 0; i < nEntradas; i++) {
     fileAutomata >> nombreEstado; // q1, q2, q3 ...
     fileAutomata >> estadoAceptacion; // 0 no es de aceptacion. 1 es de aceptacion
@@ -42,9 +43,20 @@ Automaton::Automaton(std::string inputAutomata, std::string inputStrings) {
     fileAutomata >> nTransiciones;  // numero de transiciones que hace el estado base
 
     for (int j = 0; j < nTransiciones; j++) {
-      fileAutomata >> transicion; // trancision actual mostrada
-      fileAutomata >> nombreEstadoActual; // nombre de dicha transicion mostrada
+      // Verificar si el número de transiciones leídas es distinto al especificado
+      if (!(fileAutomata >> transicion >> nombreEstadoActual)) {
+        throw std::runtime_error("Número de transiciones no coincide con el especificado");
+      }
+      // Verificar si el símbolo de transición pertenece al alfabeto
+      if (alfabeto.getSymbols().find(Symbol(transicion)) == alfabeto.getSymbols().end()) {
+        throw std::runtime_error("Símbolo de transición no definido en el alfabeto: " + transicion);
+      }
       states_[nombreEstado]->addTransition(transicion, nombreEstadoActual); // guardamos las transiciones de mi estado base
+    }
+    
+    // Verificar si el número de transiciones leídas es menor que el especificado
+    if (fileAutomata.peek() != '\n' && fileAutomata.peek() != EOF) {
+      throw std::runtime_error("Número de transiciones no coincide con el especificado");
     }
   }
 
