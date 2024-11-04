@@ -1,5 +1,5 @@
 
-El fichero input.gra con la gramática que este programa va a procesar y debería tener el siguiente formato:
+El fichero input.gra con la gramática que este programa va a procesar y debería tener el siguiente formato:::
 
 3
 a
@@ -42,3 +42,5 @@ Por como está diseñado el programa se tendrá que tener en cuenta las siguient
   - Por último, irá el número de producciones que tiene la gramática, cada una separada por lineas y puestas
     de manera que al principio de la linea irá el no-terminal al que pertenece dicha produccion, una separación
     por espacio, y finalmente la produccion de ese no-terminal.
+
+  
