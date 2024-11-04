@@ -1,34 +1,36 @@
-# Nombre del compilador
-CXX = g++
-
-# Flags de compilación
-CXXFLAGS = -std=c++17 -Wall -Wextra -pedantic
-
-# Archivos fuente
-SOURCES = main.cc grammar.cc
+# Compilador y banderas de compilación
+CC = g++
+CXXFLAGS = -g -Wall -std=c++17
+ODIR = src
 
 # Archivos objeto
-OBJECTS = $(SOURCES:.cc=.o)
+_OBJ = grammar.o alphabet.o main.o functions.o
+OBJ = $(patsubst %,$(ODIR)/%,$(_OBJ))
 
-# Archivo ejecutable
-EXECUTABLE = Grammar2CNF
+# Objetivo principal
+all: Grammar2CNF
 
-# Regla por defecto
-all: $(EXECUTABLE)
+# Regla para compilar el archivo main.cc
+$(ODIR)/main.o: $(ODIR)/main.cc $(ODIR)/grammar.h $(ODIR)/alphabet.h
+	$(CC) -c -o $@ $< $(CXXFLAGS)
 
-# Regla para compilar el ejecutable
-$(EXECUTABLE): $(OBJECTS)
-    $(CXX) $(CXXFLAGS) -o $@ $^
+# Regla para compilar el archivo grammar.cc
+$(ODIR)/grammar.o: $(ODIR)/grammar.cc $(ODIR)/grammar.h $(ODIR)/alphabet.h
+	$(CC) -c -o $@ $< $(CXXFLAGS)
 
-# Regla para compilar archivos objeto
-%.o: %.cc
-    $(CXX) $(CXXFLAGS) -c $< -o $@
+# Regla para compilar el archivo alphabet.cc
+$(ODIR)/alphabet.o: $(ODIR)/alphabet.cc $(ODIR)/alphabet.h
+	$(CC) -c -o $@ $< $(CXXFLAGS)
 
-# Regla para limpiar archivos generados
+# Regla para compilar el archivo functions.cc
+$(ODIR)/functions.o: $(ODIR)/functions.cc $(ODIR)/functions.h
+	$(CC) -c -o $@ $< $(CXXFLAGS)
+
+# Enlace final para crear el ejecutable
+Grammar2CNF: $(OBJ)
+	$(CC) -o $@ $^ $(CXXFLAGS) -lm
+
+# Limpiar archivos temporales y binarios
+.PHONY: clean
 clean:
-    rm -f $(OBJECTS) $(EXECUTABLE)
-
-# Regla para limpiar y recompilar
-rebuild: clean all
-
-.PHONY: all clean rebuild
+	rm -f $(ODIR)/*.o Grammar2CNF

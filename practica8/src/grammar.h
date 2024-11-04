@@ -14,7 +14,9 @@
 // Historial de revisiones
 //          31/10/2024 - Creación (primera versión) del código
 
-#pragma once
+#ifndef GRAMMAR_H
+#define GRAMMAR_H
+
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -25,13 +27,15 @@
 
 class Grammar {
  public:
+  Grammar() = default;
   Grammar(const std::string& input);
-  Grammar() {}
+
   void Print();
-  void ConvertToCNF();
   bool CheckIfEmptyProductions();
   bool CheckIfUnitaryProductions();
   void ChangeNonTerminalSymbol(char& symbol);
+  void ConvertToCNF();
+
   friend std::ostream& operator<<(std::ostream& out, Grammar output_grammar);
  private:
   std::set<std::string> non_terminals_;
@@ -39,3 +43,5 @@ class Grammar {
   std::string initial_;
   std::multimap<std::string, std::string> productions_;
 };
+
+#endif // GRAMMAR_H
