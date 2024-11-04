@@ -1,3 +1,20 @@
+// Universidad de La Laguna
+// Escuela Superior de Ingeniería y Tecnología
+// Grado en Ingeniería Informática
+// Asignatura: Computabilidad y Algoritmia
+// Curso: 2º
+// Práctica 8: Gramáticas en Forma Normal de Chomsky
+// Autor: Aarón Ramírez Valencia
+// Correo: alu0101438238@ull.edu.es
+// Fecha: 05/11/2024
+// Archivo alphabet.cc: 
+//          Contiene las implementacion de la clase alphabet.
+// Referencias:
+//          Enlaces de interés
+// Historial de revisiones
+//          31/10/2024 - Creación (primera versión) del código
+
+
 #include "alphabet.h"
 
 /** @brief Sobrecarga del operador de extracción para la clase Alphabet
