@@ -26,42 +26,42 @@ Grammar::Grammar(const std::string& input) {
   int num_terminals, num_of_non_terminals, num_of_productions;
   while (input_file) {
     std::string text_line;
-    std::getline(input_file, text_line);
+    std::getline(input_file, text_line); // Convierte la línea a un entero y lo asigna a num_terminals
     if (!text_line.empty()) {
       switch (counter) {
         case 1: {
           num_terminals = std::stoi(text_line);
         }
         case 2: {
-          for (int i = 1; i <= num_terminals; ++i) {
+          for (int i = 1; i <= num_terminals; ++i) { // Lee los terminales
             std::getline(input_file, text_line);
-            terminals_.Insert(text_line[0]);
+            terminals_.Insert(text_line[0]);  // Inserta cada terminal en el conjunto de terminales
           }
           std::getline(input_file, text_line);
         }
         case 3: {
-          num_of_non_terminals = std::stoi(text_line);
+          num_of_non_terminals = std::stoi(text_line); // Convierte la línea a un entero y lo asigna a num_of_non_terminals
         }
         case 4: {
-          for (int i = 1; i <= num_of_non_terminals; ++i) {
+          for (int i = 1; i <= num_of_non_terminals; ++i) { // Lee los no-terminales
             std::getline(input_file, text_line);
             if (i == 1) {
               initial_ = text_line;
             }
-            non_terminals_.insert(text_line);
+            non_terminals_.insert(text_line); // Inserta cada no-terminal en el conjunto de no-terminales
           }
           std::getline(input_file, text_line);
         }
         case 5: {
-          num_of_productions = std::stoi(text_line);
+          num_of_productions = std::stoi(text_line);  // Convierte la línea a un entero y lo asigna a num_of_productions
         }
         case 6: {
           for (int i = 1; i <= num_of_productions; ++i) {
             std::getline(input_file, text_line);
             std::string origin, production;
-            std::stringstream splitted_line(text_line);
+            std::stringstream splitted_line(text_line); // Divide la línea en origen y producción
             splitted_line >> origin, splitted_line >> production;
-            productions_.insert(std::pair<std::string, std::string>(origin, production));
+            productions_.insert(std::pair<std::string, std::string>(origin, production)); // Inserta la producción en el multimap de producciones
           }
           std::getline(input_file, text_line);
         }
@@ -143,6 +143,7 @@ void Grammar::ConvertToCNF() {
   if (*it == initial_) {
     --it;
   }
+  // Se crea un nuevo no-terminal para cada terminal
   aux_char = (*it)[0] + 1;
   std::map<char, char> aux_non_terms;
   for (auto& symbol : terminals_.GetSet()) {
@@ -151,6 +152,7 @@ void Grammar::ConvertToCNF() {
     aux_non_terms[symbol] = aux_char;
     ChangeNonTerminalSymbol(aux_char);
   }
+  // Se reemplazan los terminales por los no-terminales creados
   for (auto& production : productions_) {
     if (production.second.length() >= 2) {
       for (auto& prod_symbol : production.second) {
@@ -164,6 +166,7 @@ void Grammar::ConvertToCNF() {
       }
     }
   }
+  // Descomponer producciones largas en producciones binarias
   for (auto& production : productions_) {
     while (production.second.length() >= 3) {
       for (unsigned i = 1; i < production.second.length() - 1; ++i) {
