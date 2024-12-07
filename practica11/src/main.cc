@@ -16,11 +16,9 @@
 #include "sub_tree.h"
 #include "point_types.h"
 
-using namespace std;
-
 int main(int argc, char* argv[]) {
   if (argc < 2) {
-    cout << "Modo de empleo: " << argv[0] << " [-d] archivo_entrada" << endl;
+    std::cout << "Modo de empleo: " << argv[0] << " [-d] archivo_entrada" << std::endl;
     exit(EXIT_FAILURE);
   }
 
@@ -61,13 +59,9 @@ int main(int argc, char* argv[]) {
   const double cost = pointSet.get_cost();
 
   // Imprimir resultados
-  cout << "Conjunto de puntos original:\n" << originalPoints << endl;
-  cout << "Árbol de Expansión Mínima:\n" << emstTree << endl;
-  cout << "Costo total del árbol: " << cost << endl;
-
-  // Costo promedio de las aristas
-  const double costo_promedio = pointSet.promedio_aristas();
-  cout << "Costo promedio de las aristas: " << costo_promedio << endl;
+  std::cout << "Conjunto de puntos original:\n" << originalPoints << std::endl;
+  std::cout << "Árbol de Expansión Mínima:\n" << emstTree << std::endl;
+  std::cout << "Costo total del árbol: " << cost << std::endl;
 
   // Generar el archivo .dot si el usuario lo solicita
   if (generateDot) {

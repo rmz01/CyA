@@ -32,15 +32,6 @@ std::ostream& operator<<(std::ostream& os, const CyA::point& p) {
   return os;
 }
 
-std::ostream& operator<<(std::ostream& os, const CyA::tree& t) {
-  os << "[ ";
-  for (const auto& arc : t) {
-    os << "(" << arc.first << " -> " << arc.second << ") ";
-  }
-  os << "]";
-  return os;
-}
-
 std::istream& operator>>(std::istream& is, CyA::point_vector& ps) {
   int n;
   is >> n;
