@@ -12,6 +12,7 @@
 
 #include <iostream>
 #include <fstream>
+#include <iomanip>
 #include "point_set.h"
 #include "sub_tree.h"
 #include "point_types.h"
@@ -59,9 +60,19 @@ int main(int argc, char* argv[]) {
   const double cost = pointSet.get_cost();
 
   // Imprimir resultados
-  std::cout << "Conjunto de puntos original:\n" << originalPoints << std::endl;
-  std::cout << "Árbol de Expansión Mínima:\n" << emstTree << std::endl;
-  std::cout << "Costo total del árbol: " << cost << std::endl;
+  std::cout << "Conjunto de puntos original:\n";
+  for (const auto& point : originalPoints) {
+    std::cout << "(" << std::setw(4) << point.first << ", " << std::setw(4) << point.second << ")\n";
+  }
+
+  std::cout << "\nÁrbol de Expansión Mínima:\n";
+  for (const auto& arc : emstTree) {
+    std::cout << "(" << std::setw(4) << arc.first.first << ", " << std::setw(4) << arc.first.second << ") -> ("
+              << std::setw(4) << arc.second.first << ", " << std::setw(4) << arc.second.second << ")\n";
+  }
+
+  std::cout << std::fixed << std::setprecision(2);
+  std::cout << "\nCosto total del árbol: " << cost << std::endl;
 
   // Generar el archivo .dot si el usuario lo solicita
   if (generateDot) {
