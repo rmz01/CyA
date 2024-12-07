@@ -67,6 +67,7 @@
         "set": "cpp",
         "bitset": "cpp",
         "regex": "cpp",
-        "shared_mutex": "cpp"
+        "shared_mutex": "cpp",
+        "hash_map": "cpp"
     }
 }
