@@ -7,10 +7,11 @@
 // Autor: Aarón Ramírez Valencia
 // Correo: alu0101438238@ull.edu.es
 // Fecha: 10/12/2024
-// Archivo: point_set.hpp
+// Archivo: point_set.h
 // Descripción: Declaración de la clase point_set
 
-#pragma once
+#ifndef POINT_SET_H
+#define POINT_SET_H
 
 #include "point_types.h"
 #include "sub_tree.h"
@@ -45,3 +46,5 @@ namespace EMST {
     double euclidean_distance(const CyA::arc& a) const; // Calcular la distancia euclidiana de los arcos
   };
 }
+
+#endif

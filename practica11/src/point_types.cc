@@ -7,15 +7,19 @@
 // Autor: Aarón Ramírez Valencia
 // Correo: alu0101438238@ull.edu.es
 // Fecha: 10/12/2024
-// Archivo: point_types.cpp
+// Archivo: point_types.cc
 // Descripción: Implementación de point_types
 
 #include "point_types.h"
-
 #include <iomanip>
 
-// Sobrecarga de los operadores
-
+/**
+ * @brief sobrecarga del operador de inserción para un vector de puntos
+ * 
+ * @param os 
+ * @param ps 
+ * @return std::ostream& 
+ */
 std::ostream& operator<<(std::ostream& os, const CyA::point_vector& ps) {
   os << ps.size() << std::endl;
 
@@ -26,12 +30,26 @@ std::ostream& operator<<(std::ostream& os, const CyA::point_vector& ps) {
   return os;
 }
 
+/**
+ * @brief sobrecarga del operador de inserción para un punto
+ * 
+ * @param os 
+ * @param p 
+ * @return std::ostream& 
+ */
 std::ostream& operator<<(std::ostream& os, const CyA::point& p) {
   os << std::setw(MAX_SZ) << std::fixed << std::setprecision(MAX_PREC) << p.first << "\t" << std::setw(MAX_SZ) << std::fixed << std::setprecision(MAX_PREC) << p.second;
 
   return os;
 }
 
+/**
+ * @brief sobrecarga del operador de inserción para un árbol
+ * 
+ * @param os 
+ * @param t 
+ * @return std::ostream& 
+ */
 std::istream& operator>>(std::istream& is, CyA::point_vector& ps) {
   int n;
   is >> n;
@@ -48,6 +66,13 @@ std::istream& operator>>(std::istream& is, CyA::point_vector& ps) {
   return is;
 }
 
+/**
+ * @brief sobrecarga del operador de extracción para un punto
+ * 
+ * @param is 
+ * @param p 
+ * @return std::istream& 
+ */
 std::istream& operator>>(std::istream& is, CyA::point& p) {
   is >> p.first >> p.second;
 

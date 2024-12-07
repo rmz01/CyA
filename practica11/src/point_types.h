@@ -7,10 +7,11 @@
 // Autor: Aarón Ramírez Valencia
 // Correo: alu0101438238@ull.edu.es
 // Fecha: 10/12/2024
-// Archivo: point_types.hpp
+// Archivo: point_types.h
 // Descripción: Declaración de point_types
 
-#pragma once
+#ifndef POINT_TYPES_H
+#define POINT_TYPES_H
 
 #include <iostream>
 #include <utility>
@@ -41,3 +42,5 @@ std::ostream& operator<<(std::ostream& os, const CyA::point& ps);
 std::ostream& operator<<(std::ostream& os, const CyA::tree& t);
 std::istream& operator>>(std::istream& is, CyA::point_vector& ps);
 std::istream& operator>>(std::istream& is, CyA::point& ps);
+
+#endif

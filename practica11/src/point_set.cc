@@ -7,7 +7,7 @@
 // Autor: Aarón Ramírez Valencia
 // Correo: alu0101438238@ull.edu.es
 // Fecha: 10/12/2024
-// Archivo: point_set.cpp
+// Archivo: point_set.cc
 // Descripción: Implementación de la clase point_set
 
 #include <iomanip>
@@ -16,25 +16,21 @@
 #include "point_set.h"
 
 namespace EMST {
-
   /**
    * @brief Cosntructor de la clase point_set
    * @param points Vector de puntos
   */
-
   point_set::point_set(const CyA::point_vector& points) : CyA::point_vector(points), emst_() {}
 
   /**
    * @brief Destructor de la clase point_set
   */
-
   point_set::~point_set() {}
 
   /**
    * @brief Obtener el árbol generador de mínimo coste
    * @return emst
   */
-
   const CyA::tree& point_set::get_tree() const {
     return emst_; // Emst_ es el atributo privado que almacena el árbol
   }
@@ -43,7 +39,6 @@ namespace EMST {
    * @brief Obtener los puntos
    * @return Puntos
   */
-
   const CyA::point_vector& point_set::get_points() const {
     return *this; // Devuelve el vector de puntos heredado de CyA::point_vector
   }
@@ -52,7 +47,6 @@ namespace EMST {
    * @brief Obtener el costo del árbol
    * @return Costo
   */
-
   const double point_set::get_cost() const {
     return compute_cost(); // Puedes implementar esta función según tu lógica
   }
@@ -60,7 +54,6 @@ namespace EMST {
   /**
    * @brief Calcular el árbol generador mínimo (EMST)
   */
-
   void point_set::EMST() {
     CyA::arc_vector av;
     compute_arc_vector(av);
@@ -70,7 +63,6 @@ namespace EMST {
     for (const CyA::point& p : *this) {
       sub_tree s;
       s.add_point(p);
-
       st.push_back(s);
     }
 
@@ -90,7 +82,6 @@ namespace EMST {
    * @brief Calcular un vector de arcos a partir del conjutno de puntos
    * @param av Conjunto de arcos
   */
-
   void point_set::compute_arc_vector(CyA::arc_vector& av) const {
     av.clear();
 
@@ -118,7 +109,6 @@ namespace EMST {
    * @param i Entero
    * @param j Entero
   */
-
   void point_set::find_incident_subtrees(const sub_tree_vector& st, const CyA::arc& a, int& i, int& j) const {
     // Buscar los índices de los árboles incidentes en la arista a en el vector de subárboles st
     for (size_t index = 0; index < st.size(); ++index) {
@@ -138,7 +128,6 @@ namespace EMST {
    * @param i Entero
    * @param j Entero
   */
-
   void point_set::merge_subtrees(sub_tree_vector& st, const CyA::arc& a, int i, int j) const {
     // Fusionar los dos subárboles i y j en uno solo
     st[i].merge(st[j], make_pair(euclidean_distance(a), a));
@@ -149,7 +138,6 @@ namespace EMST {
    * @brief Calcular el costo total del árbol
    * @return Costo total
   */
-
   double point_set::compute_cost() const {
     // Calcular el costo total del árbol
     double coste_total = 0.0;
@@ -166,7 +154,6 @@ namespace EMST {
    * @param a Arco
    * @return Distancia euclidiana
   */
-
   double point_set::euclidean_distance(const CyA::arc& a) const {
     // Calcular la distancia euclidiana entre dos puntos
     double dx = a.first.first - a.second.first;
@@ -178,33 +165,27 @@ namespace EMST {
    * @brief Realizar el fichero .dot si se ejecuta -d
    * @param filename Nombre del fichero .dot
   */
-
-  void point_set::write_dot_file(const string& filename) const {
-    ofstream dotFile(filename);
-    dotFile << "graph {" << endl;
+  void point_set::write_dot_file(const std::string& filename) const {
+    std::ofstream dotFile(filename);
+    dotFile << "graph{\n" << std::endl;
 
     // Obtener la referencia constante al árbol generador mínimo (EMST)
     const CyA::tree& emst_tree = get_tree();
 
-    // Mapa para asignar identificadores únicos a los puntos
-    map<CyA::point, string> pointIds;
-
     // Asignar identificadores a los puntos basados en su posición
     for (size_t i = 0; i < size(); ++i) {
       const CyA::point& point = at(i);
-      pointIds[point] = "p" + to_string(i + 1); // Usar 'p' como prefijo para evitar números iniciales
-      dotFile << "  " << pointIds[point] << " [pos=\"" << point.first << "," << -point.second << "!\"]" << endl;
+      dotFile << " " << i << " [pos = \" " << point.first << "," << point.second << "!\"]" << std::endl;
     }
 
     // Iterar sobre los arcos del EMST y escribir las conexiones
     for (const auto& arc : emst_tree) {
-      const CyA::point& point1 = arc.first;
-      const CyA::point& point2 = arc.second;
-
-      dotFile << "  " << pointIds.at(point1) << " -- " << pointIds.at(point2) << endl;
+      int index1 = std::distance(begin(), std::find(begin(), end(), arc.first));
+      int index2 = std::distance(begin(), std::find(begin(), end(), arc.second));
+      dotFile << " " << index1 << " -- " << index2 << std::endl;
     }
 
-    dotFile << "}" << endl;
+    dotFile << "}" << std::endl;
     dotFile.close();
   }
 }

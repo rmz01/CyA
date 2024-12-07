@@ -7,10 +7,11 @@
 // Autor: Aarón Ramírez Valencia
 // Correo: alu0101438238@ull.edu.es
 // Fecha: 10/12/2024
-// Archivo: sub_tree.hpp
+// Archivo: sub_tree.h
 // Descripción: Declaración de la clase sub_tree
 
-#pragma once
+#ifndef SUB_TREE_H
+#define SUB_TREE_H
 
 #include <iostream>
 #include <cmath>
@@ -37,3 +38,5 @@ namespace EMST {
   };
   typedef std::vector<sub_tree> sub_tree_vector; // Almacena objetos de la clase sub_tree
 }
+
+#endif

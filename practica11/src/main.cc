@@ -7,7 +7,7 @@
 // Autor: Aarón Ramírez Valencia
 // Correo: alu0101438238@ull.edu.es
 // Fecha: 10/12/2024
-// Archivo: main.cpp
+// Archivo: main.cc
 // Descripción: Programa que genera un EMST a partir de una nube de puntos
 
 #include <iostream>
@@ -18,7 +18,7 @@
 #include "point_types.h"
 
 int main(int argc, char* argv[]) {
-  if (argc < 2) {
+  if (argc < 2 || argc > 3) {
     std::cout << "Modo de empleo: " << argv[0] << " [-d] archivo_entrada" << std::endl;
     exit(EXIT_FAILURE);
   }
@@ -30,8 +30,7 @@ int main(int argc, char* argv[]) {
   if (argc == 3 && std::string(argv[1]) == "-d") {
     generateDot = true;
     inputFileName = argv[2];
-  } 
-  else if (argc == 2) {
+  }  else if (argc == 2) {
     inputFileName = argv[1];
   }
 

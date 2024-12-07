@@ -7,7 +7,7 @@
 // Autor: Aarón Ramírez Valencia
 // Correo: alu0101438238@ull.edu.es
 // Fecha: 10/12/2024
-// Archivo: sub_tree.cpp
+// Archivo: sub_tree.cc
 // Descripción: Implementación de la clase sub_tree
 
 #include <iomanip>
@@ -21,20 +21,17 @@ namespace EMST {
   /**
    * @brief Constructor por defecto de la clase
   */
-
   sub_tree::sub_tree() : arcs_(), points_(), cost_(0) {}
 
   /**
    * @brief Destructor por defecto de la clase
   */
-
   sub_tree::~sub_tree() {}
 
   /**
    * @brief Añadir un arco al sub-árbol
    * @param a Arco a añadir
   */
-
   void sub_tree::add_arc(const CyA::arc& a) {
     arcs_.push_back(a);
     points_.insert(a.first);
@@ -45,7 +42,6 @@ namespace EMST {
    * @brief Añadir un punto al sub-árbol
    * @param p Punto a añadir
   */
-
   void sub_tree::add_point(const CyA::point& p) {
     points_.insert(p);
   }
@@ -54,7 +50,6 @@ namespace EMST {
    * @brief Verificar que existe un punto en el sub-árbol
    * @param p Punto a comprobar
   */
-
   bool sub_tree::contains(const CyA::point& p) const {
     return points_.find(p) != points_.end();
   }
@@ -64,7 +59,6 @@ namespace EMST {
    * @param st Sub-árbol actual
    * @param a Otro árbol
   */
-
   void sub_tree::merge(const sub_tree& st, const CyA::weigthed_arc& a) {
     arcs_.insert(arcs_.end(), st.arcs_.begin(), st.arcs_.end());
     arcs_.push_back(a.second);
@@ -78,7 +72,6 @@ namespace EMST {
    * @brief Obtener los arcos del árbol
    * @return Arcos
   */
-
   const CyA::tree& sub_tree::get_arcs() const {
     return arcs_;
   }
@@ -87,7 +80,6 @@ namespace EMST {
    * @brief Obtener los costos del sub-árbol
    * @return Costos
   */
-
   double sub_tree::get_cost() const {
     return cost_;
   }
