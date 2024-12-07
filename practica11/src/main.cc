@@ -1,46 +1,78 @@
+// Universidad de La Laguna
+// Escuela Superior de Ingeniería y Tecnología
+// Grado en Ingeniería Informática
+// Asignatura: Computabilidad y Algoritmia
+// Curso: 2º
+// Práctica 11: Algoritmos Voraces (Greedy). Euclidean Minimum Spanning Tree
+// Autor: Aarón Ramírez Valencia
+// Correo: alu0101438238@ull.edu.es
+// Fecha: 10/12/2024
+// Archivo: main.cpp
+// Descripción: Programa que genera un EMST a partir de una nube de puntos
+
 #include <iostream>
 #include <fstream>
-#include <vector>
-#include "point_types.h"
+#include "point_set.h"
 #include "sub_tree.h"
-#include "kruskal.h"
+#include "point_types.h"
 
-int main(int argc, char *argv[]) {
-  if (argc != 3) {
-    std::cerr << "Usage: " << argv[0] << " <input_file> <output_file>\n";
-    return 1;
+using namespace std;
+
+int main(int argc, char* argv[]) {
+  if (argc < 2) {
+    cout << "Modo de empleo: " << argv[0] << " [-d] archivo_entrada" << endl;
+    exit(EXIT_FAILURE);
   }
 
-  std::ifstream input_file(argv[1]);
-  if (!input_file) {
-    std::cerr << "Error opening input file\n";
-    return 1;
+  bool generateDot = false;
+  std::string inputFileName;
+
+  // Verificar la opción -d
+  if (argc == 3 && std::string(argv[1]) == "-d") {
+    generateDot = true;
+    inputFileName = argv[2];
+  } 
+  else if (argc == 2) {
+    inputFileName = argv[1];
   }
 
-  std::ofstream output_file(argv[2]);
-  if (!output_file) {
-    std::cerr << "Error opening output file\n";
-    return 1;
+  // Crear un conjunto de puntos a partir del fichero
+  ifstream file(inputFileName);
+  int num_puntos;
+  file >> num_puntos;
+
+  // Crear el vector de puntos
+  CyA::point_vector points;
+  for (int i = 0; i < num_puntos; i++) {
+    double x, y;
+    file >> x >> y;
+    points.push_back({x, y});
   }
+  file.close();
 
-  int num_points;
-  input_file >> num_points;
+  EMST::point_set pointSet(points);
+  
+  // Calcular el Árbol de Expansión Mínima
+  pointSet.EMST();
 
-	CyA::point_vector points(num_points);
-  for (int i = 0; i < num_points; ++i) {
-    input_file >> points[i].first >> points[i].second;
+  // Obtener información del árbol
+  const CyA::tree& emstTree = pointSet.get_tree();
+  const CyA::point_vector& originalPoints = pointSet.get_points();
+  const double cost = pointSet.get_cost();
+
+  // Imprimir resultados
+  cout << "Conjunto de puntos original:\n" << originalPoints << endl;
+  cout << "Árbol de Expansión Mínima:\n" << emstTree << endl;
+  cout << "Costo total del árbol: " << cost << endl;
+
+  // Costo promedio de las aristas
+  const double costo_promedio = pointSet.promedio_aristas();
+  cout << "Costo promedio de las aristas: " << costo_promedio << endl;
+
+  // Generar el archivo .dot si el usuario lo solicita
+  if (generateDot) {
+    pointSet.write_dot_file("emst_tree.dot");
   }
-
-  EMST::sub_tree emst = EMST::Kruskal::computeEMST(points);
-
-  for (const auto &arc : emst.get_arcs()) {
-    output_file << "(" << (arc.first.first >= 0 ? " " : "") << arc.first.first << ", " 
-      					<< (arc.first.second >= 0 ? " " : "") << arc.first.second << ") -> ("
-                << (arc.second.first >= 0 ? " " : "") << arc.second.first << ", " 
-                << (arc.second.second >= 0 ? " " : "") << arc.second.second << ")\n";
-    }
-
-  output_file << "\n" << emst.get_cost() << std::endl;
 
   return 0;
 }

@@ -4,7 +4,7 @@ CXXFLAGS = -g -Wall -std=c++17
 ODIR = src
 
 # Archivos objeto
-_OBJ = point_types.o sub_tree.o kruskal.o main.o
+_OBJ = point_types.o sub_tree.o point_set.o main.o
 OBJ = $(patsubst %,$(ODIR)/%,$(_OBJ))
 
 # Objetivo principal
@@ -22,8 +22,8 @@ $(ODIR)/point_types.o: $(ODIR)/point_types.cc $(ODIR)/point_types.h $(ODIR)/sub_
 $(ODIR)/sub_tree.o: $(ODIR)/sub_tree.cc $(ODIR)/sub_tree.h
 	$(CC) -c -o $@ $< $(CXXFLAGS)
 
-# Regla para compilar el archivo kruskal.cc
-$(ODIR)/kruskal.o: $(ODIR)/kruskal.cc $(ODIR)/kruskal.h
+# Regla para compilar el archivo point_set.cc
+$(ODIR)/point_set.o: $(ODIR)/point_set.cc $(ODIR)/point_set.h
 	$(CC) -c -o $@ $< $(CXXFLAGS)
 
 # Enlace final para crear el ejecutable
