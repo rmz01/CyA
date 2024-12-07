@@ -1,104 +1,52 @@
 #include <iostream>
+#include <fstream>
 #include <vector>
-#include <algorithm>
-#include <cmath>
-#include <utility>
-#include <set>
-#include "sub_tree.h"
 #include "point_types.h"
+#include "sub_tree.h"
+#include "kruskal.h"
 
-namespace EMST
+int main(int argc, char *argv[])
 {
-    class Kruskal
+    if (argc != 3)
     {
-    public:
-        static sub_tree computeEMST(const CyA::point_vector &points)
-        {
-            sub_tree result;
-            std::vector<CyA::weigthed_arc> edges;
+        std::cerr << "Usage: " << argv[0] << " <input_file> <output_file>\n";
+        return 1;
+    }
 
-            // Step 1: Create all edges with their weights (distances)
-            for (size_t i = 0; i < points.size(); ++i)
-            {
-                for (size_t j = i + 1; j < points.size(); ++j)
-                {
-                    double weight = distance(points[i], points[j]);
-                    edges.push_back({weight, {points[i], points[j]}});
-                }
-            }
+    std::ifstream input_file(argv[1]);
+    if (!input_file)
+    {
+        std::cerr << "Error opening input file\n";
+        return 1;
+    }
 
-            // Step 2: Sort edges by weight
-            std::sort(edges.begin(), edges.end(), [](const CyA::weigthed_arc &a, const CyA::weigthed_arc &b) {
-                return a.first < b.first;
-            });
+    std::ofstream output_file(argv[2]);
+    if (!output_file)
+    {
+        std::cerr << "Error opening output file\n";
+        return 1;
+    }
 
-            // Step 3: Initialize each point as a separate tree
-            std::vector<sub_tree> forest;
-            for (const auto &point : points)
-            {
-                sub_tree tree;
-                tree.add_point(point);
-                forest.push_back(tree);
-            }
+    int num_points;
+    input_file >> num_points;
 
-            // Step 4: Kruskal's algorithm
-            for (const auto &edge : edges)
-            {
-                sub_tree *tree1 = nullptr;
-                sub_tree *tree2 = nullptr;
-
-                // Find the trees containing the endpoints of the edge
-                for (auto &tree : forest)
-                {
-                    if (tree.contains(edge.second.first))
-                    {
-                        tree1 = &tree;
-                    }
-                    if (tree.contains(edge.second.second))
-                    {
-                        tree2 = &tree;
-                    }
-                }
-
-                // If they are in different trees, merge them
-                if (tree1 != tree2)
-                {
-                    tree1->merge(*tree2, edge);
-                    forest.erase(std::remove(forest.begin(), forest.end(), *tree2), forest.end());
-                }
-
-                // If only one tree remains, we have our EMST
-                if (forest.size() == 1)
-                {
-                    result = forest.front();
-                    break;
-                }
-            }
-
-            return result;
-        }
-
-    private:
-        static double distance(const CyA::point &a, const CyA::point &b)
-        {
-            return std::sqrt(std::pow(a.first - b.first, 2) + std::pow(a.second - b.second, 2));
-        }
-    };
-}
-
-int main()
-{
-    CyA::point_vector points;
-    std::cin >> points;
+    CyA::point_vector points(num_points);
+    for (int i = 0; i < num_points; ++i)
+    {
+        input_file >> points[i].first >> points[i].second;
+    }
 
     EMST::sub_tree emst = EMST::Kruskal::computeEMST(points);
 
-    std::cout << "Minimum Spanning Tree Cost: " << emst.get_cost() << std::endl;
     for (const auto &arc : emst.get_arcs())
     {
-        std::cout << "(" << arc.first.first << ", " << arc.first.second << ") - ("
-                  << arc.second.first << ", " << arc.second.second << ")" << std::endl;
+        output_file << "(" << (arc.first.first >= 0 ? " " : "") << arc.first.first << ", " 
+                    << (arc.first.second >= 0 ? " " : "") << arc.first.second << ") -> ("
+                    << (arc.second.first >= 0 ? " " : "") << arc.second.first << ", " 
+                    << (arc.second.second >= 0 ? " " : "") << arc.second.second << ")\n";
     }
+
+    output_file << "\n" << emst.get_cost() << std::endl;
 
     return 0;
 }
